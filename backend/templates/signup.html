@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternshipHub - Registration Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../STYLING/signup.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../IMAGES/favicon.ico">
+    <style>
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="registration-side">
+                <h1>Sign Up</h1>
+                <form id="registerForm" class="registration-form">
+                    <div class="input-group">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <div class="password-container">
+                            <input type="password" id="password" placeholder="Password" required>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                        <small id="passwordError" style="color: red;"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="password-container">
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                        <small id="confirmPasswordError" style="color: red;"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <select id="role" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="student">Student</option>
+                            <option value="recruiter">Recruiter</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="registerBtn" class="register-btn">Register</button>
+                </form>
+            </div>
+
+            <div class="welcome-side">
+                <div class="welcome-content">
+                    <h2>Welcome Back!</h2>
+                    <p>Already have an account?</p>
+                    <a href="../PAGES/login.html"> <button class="login-btn">Login</button> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".toggle-password").forEach((icon) => {
+                icon.addEventListener("click", function () {
+                    let passwordField = this.previousElementSibling;
+                    if (passwordField.type === "password") {
+                        passwordField.type = "text";
+                        this.classList.remove("fa-eye");
+                        this.classList.add("fa-eye-slash");
+                    } else {
+                        passwordField.type = "password";
+                        this.classList.remove("fa-eye-slash");
+                        this.classList.add("fa-eye");
+                    }
+                });
+            });
+        });
+
+
+        document.getElementById("password").addEventListener("input", function () {
+            let password = this.value;
+            let errorElement = document.getElementById("passwordError");
+            let uppercasePattern = /^[A-Z]/;
+            let specialCharPattern = /[\W_]/;
+
+            if (password.length < 8) {
+                errorElement.textContent = "Password must be at least 8 characters.";
+            } else if (!uppercasePattern.test(password)) {
+                errorElement.textContent = "Password must start with an uppercase letter.";
+            } else if (!specialCharPattern.test(password)) {
+                errorElement.textContent = "Password must contain at least one special character.";
+            } else {
+                errorElement.textContent = "";
+            }
+        });
+
+        document.getElementById("confirmPassword").addEventListener("input", function () {
+            let password = document.getElementById("password").value;
+            let confirmPassword = this.value;
+            let errorElement = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                errorElement.textContent = "Passwords do not match.";
+            } else {
+                errorElement.textContent = "";
+            }
+        });
+
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const fullName = document.getElementById("fullName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const confirmPassword = document.getElementById("confirmPassword").value.trim();
+            const role = document.getElementById("role").value.trim();
+
+            if (!fullName || !email || !password || !confirmPassword || !role) {
+                alert("Please fill in all required details.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            Swal.fire({
+                title: "Registration Successful!",
+                text: "Your account has been created. Welcome to our platform!",
+                icon: "success",
+                confirmButtonText: "Get Started",
+                confirmButtonColor: "#9a8c98",
+                timer: 5000,
+                timerProgressBar: true
+            }).then((result) => {
+                window.location.href = "login.html";
+            });
+        });
+    </script>
+</body>
+
+</html>

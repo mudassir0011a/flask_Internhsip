@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Developer </title>
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --header-bg: #ffffff;
+            --footer-bg: #34495e;
+        }
+
+        /* Dark mode variables */
+        .dark-mode {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #f9f9f9;
+            --bg-color: #2c3e50;
+            --card-bg: #34495e;
+            --header-bg: #2c3e50;
+            --footer-bg: #2c3e50;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .auth-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Groww Section Styles */
+        .Groww {
+            background-color: var(--card-bg);
+            padding: 3rem 0;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Groww-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .Groww-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .company-logo {
+            width: 150px;
+            height: auto;
+        }
+
+        /* Internship Details Styles */
+        .internship-details {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+
+        .detail-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .responsibilities,
+        .description {
+            margin-top: 2rem;
+        }
+
+        .responsibilities ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        /* Action Buttons Styles */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .Groww-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .company-logo {
+                margin-top: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">InternshipHub</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../internships.html">Internships</a></li>
+                <li><a href="../about_us.html">About Us</a></li>
+                <li><a href="../contact_us.html">Contact</a></li>
+            </ul>
+            <button class="auth-button">Login</button>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="Groww">
+            <div class="Groww-content">
+                <div class="Groww-text">
+                    <h1>&nbsp;&nbsp;&nbsp;Software Developer Intern</h1>
+                    <!-- <p>Groww</p> -->
+                </div>
+                <img src="../../IMAGES  ASSESTS/grow.png" alt="Logo" class="company-logo">
+            </div>
+        </section>
+
+        <section class="internship-details">
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h3>Company</h3>
+                    <p>Groww</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Location</h3>
+                    <p>Bangalore</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Start Date</h3>
+                    <p>March 1, 2025</p>
+                </div>
+                <div class="detail-item">
+                    <h3>End Date</h3>
+                    <p>August 30, 2025</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Application Deadline</h3>
+                    <p>Feb 21, 2025</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Positions Available</h3>
+                    <p>5</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Internship Type</h3>
+                    <p>Full-time, Paid</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Stipend</h3>
+                    <p>9500/month</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Skills Required</h3>
+                    <p>JavaScript, React, Node.js, Git</p>
+                </div>
+            </div>
+
+            <div class="responsibilities">
+                <h3>Responsibilities</h3>
+                <ul>
+                    <li>Develop and maintain web applications using React and Node.js</li>
+                    <li>Collaborate with the team to design and implement new features</li>
+                    <li>Write clean, efficient, and well-documented code</li>
+                    <li>Participate in code reviews and contribute to improving development practices</li>
+                    <li>Assist in troubleshooting and fixing bugs</li>
+                </ul>
+            </div>
+
+            <div class="description">
+                <h3>Internship Description</h3>
+                <p>Join Groww as a Software Developer Intern and gain hands-on experience in building cutting-edge
+                    web applications. You'll work alongside experienced developers, learning best practices in software
+                    development and contributing to real-world projects. This internship offers a unique opportunity to
+                    enhance your skills in front-end and back-end technologies while working in a dynamic, fast-paced
+                    environment.</p>
+            </div>
+        </section>
+
+        <div class="action-buttons">
+            <a href="../internships.html"><button class="btn btn-secondary">Back to Internships</button></a>
+        </div>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>What are the eligibility criteria?</h3>
+                <p>Candidates should be pursuing or have recently completed a degree in Computer Science or a related
+                    field. Strong knowledge of JavaScript and experience with React is required.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I apply?</h3>
+                <p>Click the 'Apply Now' button above and fill out the application form. Make sure to attach your resume
+                    and a cover letter.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is this internship open to international applicants?</h3>
+                <p>No, this is a full-time internship based in Bangalore and is not open to remote applicants.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 InternshipHub. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+
+</html>
