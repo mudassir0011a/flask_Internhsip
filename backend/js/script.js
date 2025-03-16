@@ -86,17 +86,11 @@ function checkLoginStatus() {
         dashboardLink.classList.toggle("d-none", !isLoggedIn);
         dashboardLink.href = role === "student" ? "dashboard.html" : "recruiter.html";
     }
-    if (logoutLink) {
-        logoutLink.classList.toggle("d-none", !isLoggedIn);
-    }
-    if (loginLink) {
-        loginLink.classList.toggle("d-none", isLoggedIn);
-    }
-    // Completely remove the signup buttons when logged in
-    if (isLoggedIn) {
-        if (candidateSignup) candidateSignup.remove();
-        if (companySignup) companySignup.remove();
-    }
+    if (logoutLink) logoutLink.classList.toggle("d-none", !isLoggedIn);
+    if (loginLink) loginLink.classList.toggle("d-none", isLoggedIn);
+    // Hide both signup buttons when logged in
+    if (candidateSignup) candidateSignup.style.display = isLoggedIn ? "none" : "";
+    if (companySignup) companySignup.style.display = isLoggedIn ? "none" : "";
 }
 
 // Logout function

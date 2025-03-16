@@ -3,29 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Writer - InternshipHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Using the same CSS file -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <style>
+        /* ======================= */
         /* CSS Variables */
+        /* ======================= */
         :root {
             --primary: #4a4e69;
+            /* Desaturated indigo for a sophisticated look */
             --secondary: #9a8c98;
+            /* Muted mauve for softer accents */
             --background: #f7ede2;
+            /* Light beige for a warm aesthetic */
             --text: #22223b;
+            /* Dark blue-gray for contrast */
             --highlight: #c9ada7;
+            /* Rose beige for highlights */
             --light: #ffffff;
+            /* Crisp white for clean sections */
             --dark: #2a2a2a;
+            /* Dark gray for secondary elements */
             --accent: #f4a261;
+            /* Soft orange for CTAs or highlights */
             --success: #4CAF50;
+            /* Green for success states */
             --warning: #FFC107;
+            /* Yellow for warning states */
             --danger: #DC3545;
+            /* Red for danger/error states */
         }
 
+        /* ======================= */
         /* General Reset */
+        /* ======================= */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +58,9 @@
             padding-top: 60px;
         }
 
+        /* ======================= */
         /* Navbar Styling */
+        /* ======================= */
         .navbar {
             background-color: var(--primary);
             padding: 1rem;
@@ -71,7 +89,9 @@
         }
 
         .btn-login,
-        .btn-signup {
+        .btn-signup,
+        .btn-dashboard,
+        .btn-logout {
             color: var(--light);
             border-radius: 20px;
             font-weight: bold;
@@ -92,6 +112,22 @@
             width: 6rem;
         }
 
+        .btn-dashboard {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.4rem 1.3rem;
+            border-radius: 5rem;
+            text-decoration: none;
+        }
+
+        .btn-logout {
+            background-color: #c9ada7;
+            color: black;
+            padding: 0.4rem 1.2rem;
+            border-radius: 5rem;
+            text-decoration: none;
+        }
+
         .btn-login:hover {
             background-color: var(--light);
             color: var(--primary);
@@ -103,7 +139,94 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
+        .btn-dashboard:hover {
+            background-color: var(--secondary);
+            color: var(--background);
+        }
+
+        .btn-logout:hover {
+            background-color: var(--primary);
+            color: var(--background);
+            border: 1px solid #c9ada7;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--highlight);
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ======================= */
+        /* Dark Mode Toggle */
+        /* ======================= */
+        .dark-mode-toggle {
+            position: relative;
+            margin-left: 15px;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .dark-mode-label {
+            cursor: pointer;
+            display: block;
+            width: 50px;
+            height: 26px;
+            position: relative;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 26px;
+            background-color: #f1f1f1;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+
+        .sun,
+        .moon {
+            width: 16px;
+            height: 16px;
+            color: #333;
+        }
+
+        .moon {
+            display: none;
+        }
+
+        #darkModeToggle:checked+.dark-mode-label .circle {
+            background-color: #333;
+        }
+
+        #darkModeToggle:checked+.dark-mode-label .sun {
+            display: none;
+        }
+
+        #darkModeToggle:checked+.dark-mode-label .moon {
+            display: block;
+            color: #f1f1f1;
+        }
+
+        /* ======================= */
         /* Main Content */
+        /* ======================= */
         .main-content {
             padding: 20px;
             max-width: 1200px;
@@ -128,7 +251,9 @@
             font-size: 1.1rem;
         }
 
+        /* ======================= */
         /* Job Details Section */
+        /* ======================= */
         .job-section {
             background-color: var(--light);
             border-radius: 10px;
@@ -184,7 +309,9 @@
             color: var(--primary);
         }
 
+        /* ======================= */
         /* Job Details Grid */
+        /* ======================= */
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -210,7 +337,9 @@
             color: var(--text);
         }
 
+        /* ======================= */
         /* Job Description */
+        /* ======================= */
         .job-description {
             margin-bottom: 30px;
         }
@@ -226,7 +355,9 @@
             line-height: 1.7;
         }
 
+        /* ======================= */
         /* Responsibilities */
+        /* ======================= */
         .responsibilities {
             margin-bottom: 30px;
         }
@@ -257,7 +388,9 @@
             color: var(--primary);
         }
 
+        /* ======================= */
         /* Action Buttons */
+        /* ======================= */
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -299,7 +432,9 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* ======================= */
         /* FAQ Section */
+        /* ======================= */
         .faq-section {
             background-color: var(--light);
             border-radius: 10px;
@@ -348,7 +483,9 @@
             padding-left: 25px;
         }
 
+        /* ======================= */
         /* Footer Section */
+        /* ======================= */
         .footer {
             background-color: #4a4e69;
             color: #ffffff;
@@ -428,7 +565,9 @@
             font-size: 0.9rem;
         }
 
+        /* ======================= */
         /* Dark Mode Styling */
+        /* ======================= */
         .dark-mode {
             --background: #121212;
             --text: #ffffff;
@@ -463,14 +602,15 @@
 
         .dark-mode .btn-back {
             background-color: var(--dark);
-            color: var(--light);
         }
 
         .dark-mode .btn-back:hover {
             background-color: var(--secondary);
         }
 
+        /* ======================= */
         /* Responsive Design */
+        /* ======================= */
         @media (max-width: 992px) {
             .job-header {
                 flex-direction: column;
@@ -506,66 +646,52 @@
             }
         }
 
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: relative;
-            margin-left: 15px;
-        }
-
-        .dark-mode-toggle input {
-            display: none;
-        }
-
-        .dark-mode-label {
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            color: var(--light);
+            border: none;
             cursor: pointer;
-            display: block;
-            width: 50px;
-            height: 26px;
-            position: relative;
-        }
-
-        .circle {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50px;
-            height: 26px;
-            background-color: #f1f1f1;
-            border-radius: 25px;
-            transition: all 0.3s ease;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 5px;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-        .sun,
-        .moon {
-            width: 16px;
-            height: 16px;
-            color: #333;
+        #back-to-top:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .moon {
-            display: none;
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
 
-        #darkModeToggle:checked+.dark-mode-label .circle {
-            background-color: #333;
+        #back-to-top i {
+            transition: transform 0.3s ease;
         }
 
-        #darkModeToggle:checked+.dark-mode-label .sun {
-            display: none;
-        }
-
-        #darkModeToggle:checked+.dark-mode-label .moon {
-            display: block;
-            color: #f1f1f1;
+        #back-to-top:hover i {
+            transform: translateY(-3px);
         }
     </style>
 </head>
 
 <body>
+
     <!-- Navbar -->
     <div id="navbar">
         <nav class="navbar navbar-expand-lg">
@@ -577,15 +703,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="internships.html">Internships</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../internships.html">Internships</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../about_us.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../contact_us.html">Contact Us</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <!-- Dynamic Buttons -->
-                        <a href="#" id="login-link" class="btn btn-login me-2">Login</a>
-                        <a href="#" id="signup-link" class="btn btn-signup">Sign Up</a>
+                        <a href="../login.html" id="login-link" class="btn btn-login me-2">Login</a>
                     </div>
                 </div>
             </div>
@@ -595,13 +719,11 @@
                 <label for="darkModeToggle" class="dark-mode-label">
                     <div class="circle">
                         <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+                            <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75Z" />
                         </svg>
                         <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path fill-rule="evenodd"
-                                d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                                clip-rule="evenodd" />
+                                d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98A10.503 10.503 0 0 1 2.25 12c0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" />
                         </svg>
                     </div>
                 </label>
@@ -612,19 +734,19 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="page-header">
-            <h1>Content Writer Internship</h1>
-            <p>Create compelling content and shape brand narratives</p>
+            <h1>Internship Details</h1>
+            <p>Explore this exciting opportunity and take the next step in your career</p>
         </div>
 
         <!-- Job Details Section -->
         <section class="job-section">
             <div class="job-header">
                 <div>
-                    <h1 class="job-title">Content Writer</h1>
-                    <p class="job-company">Tata Consultancy Service (TCS)</p>
+                    <h1 class="job-title">Content Writer Intern</h1>
+                    <p class="job-company">Tata Consultancy Services (TCS)</p>
                     <p class="job-location"><i class="fas fa-map-marker-alt"></i> Remote</p>
                 </div>
-                <img src="/placeholder.svg?height=120&width=120" alt="TCS Logo" class="company-logo">
+                <img src="../../IMAGES ASSESTS/tcs.png" alt="TCS Logo" class="company-logo">
             </div>
 
             <div class="details-grid">
@@ -646,64 +768,24 @@
                 </div>
                 <div class="detail-item">
                     <h3><i class="fas fa-briefcase"></i> Internship Type</h3>
-                    <p>Flexible hours, Paid</p>
+                    <p>Remote, Paid</p>
                 </div>
                 <div class="detail-item">
                     <h3><i class="fas fa-rupee-sign"></i> Stipend</h3>
-                    <p>₹9,500/month</p>
+                    <p>₹10,000/month</p>
                 </div>
                 <div class="detail-item">
                     <h3><i class="fas fa-tools"></i> Skills Required</h3>
-                    <p>Excellent writing skills, SEO knowledge, WordPress, Google Analytics</p>
+                    <p>SEO, Content Writing, WordPress, Google Analytics</p>
                 </div>
-            </div>
-
-            <div class="job-description">
-                <h3><i class="fas fa-info-circle"></i> Internship Description</h3>
-                <p>Join Tata Consultancy Service (TCS) as a Content Writer Intern and develop your writing skills by
-                    creating high-quality content for various platforms. You'll work with experienced professionals,
-                    learning best practices in content creation and SEO. This internship offers a unique opportunity to
-                    enhance your writing skills and gain valuable experience in a dynamic, professional environment.</p>
-            </div>
-
-            <div class="responsibilities">
-                <h3><i class="fas fa-tasks"></i> Responsibilities</h3>
-                <ul>
-                    <li>Write clear, compelling copy for various mediums (e.g., blogs, articles, social media)</li>
-                    <li>Conduct thorough research on industry-related topics</li>
-                    <li>Collaborate with marketing and design teams to create engaging content</li>
-                    <li>Optimize content for SEO to increase web traffic</li>
-                    <li>Edit and proofread content to ensure high quality</li>
-                </ul>
             </div>
         </section>
 
         <div class="action-buttons">
-            <button class="btn-apply"><i class="fas fa-paper-plane"></i> Apply Now</button>
-            <a href="internships.html"><button class="btn-back"><i class="fas fa-arrow-left"></i> Back to
+            <a href="../internships.html"><button class="btn-back"><i class="fas fa-arrow-left"></i> Back to
                     Internships</button></a>
         </div>
-
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>What are the eligibility criteria?</h3>
-                <p>Candidates should have excellent writing skills and a strong command of the English language. Prior
-                    experience in content writing or a related field is preferred.</p>
-            </div>
-            <div class="faq-item">
-                <h3>How can I apply?</h3>
-                <p>Click the 'Apply Now' button above and fill out the application form. Make sure to attach your resume
-                    and a portfolio of your writing samples.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Is this internship open to international applicants?</h3>
-                <p>Yes, this is a remote internship open to candidates worldwide.</p>
-            </div>
-        </section>
     </div>
-
     <!-- FOOTER SECTION -->
     <footer class="footer">
         <div class="footer-container">
@@ -721,11 +803,11 @@
             <div class="footer-section quick-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="internships.html">Internships</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="contact_us.html">Contact</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../internships.html">Internships</a></li>
+                    <li><a href="../about_us.html">About Us</a></li>
+                    <li><a href="../contact_us.html">Contact</a></li>
+                    <li><a href="../index.html#faq-section">FAQ</a></li>
                 </ul>
             </div>
 
@@ -734,7 +816,7 @@
                 <h3>Contact Us</h3>
                 <p>Email: <a href="/cdn-cgi/l/email-protection#c4adaaa2ab84ada4b0a1b6a4b7acadb4acb1a6eaa7aba9"><span
                             class="__cf_email__"
-                            data-cfemail="c4adaaa2ab84ada4b0a1b6a4b7acadb4acb1a6eaa7aba9">[email&#160;protected]</span></a>
+                            data-cfemail="e28b8c848da2858297879083918a8b928a9780cc818d8f">[email&#160;protected]</span></a>
                 </p>
                 <p>Phone: +1 (123) 456-7890</p>
                 <p>Address: 123 Internship Lane, Career City</p>
@@ -753,7 +835,6 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -790,7 +871,26 @@
                 localStorage.setItem('theme', 'light');
             }
         });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
+
 </body>
 
 </html>

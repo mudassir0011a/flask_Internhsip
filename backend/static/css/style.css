@@ -99,24 +99,23 @@ nav li {
 
 .btn-login,
 .btn-signup {
-    color: var(--light);
-    border-radius: 20px;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
+    /* Updated styling for a more professional look */
+    padding: 0.65rem 1.5rem;
+    border-radius: 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 2px solid var(--light);
     margin-left: 0.5rem;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Removed fixed width for dynamic sizing */
 }
 
 .btn-login {
     background-color: transparent;
-    border: 1px solid var(--light);
-    width: 6rem;
 }
 
 .btn-signup {
     background-color: transparent;
-    border: 1px solid var(--light);
-    width: 6rem;
 }
 
 .btn-login:hover {
@@ -125,8 +124,6 @@ nav li {
 }
 
 .btn-signup:hover {
-    color: white;
-    border: 2px solid bisque;
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -147,6 +144,13 @@ nav li {
 }
 
 .d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.auth-buttons {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1512,3 +1516,94 @@ input#searchInput {
 body.dark-mode a {
     color: white !important;
 }
+
+/* General styling for both signup buttons */
+.btn-signup {
+    background-color: transparent !important;
+    /* No default background */
+    color: white !important;
+    /* White text */
+    border: 2px solid white !important;
+    /* White border */
+    padding: 10px 25px !important;
+    /* Increase padding for better UI */
+    border-radius: 25px !important;
+    /* Rounded corners */
+    font-size: 16px !important;
+    /* Readable font */
+    font-weight: bold !important;
+    transition: all 0.3s ease-in-out !important;
+    text-align: center !important;
+    display: inline-block !important;
+}
+
+/* Candidate's Signup Button - Specific Style */
+#candidate-signup {
+    color: #ffcc00 !important;
+    /* Yellow text */
+    border-color: #ffcc00 !important;
+}
+
+/* Hover Effect for Candidate's Signup */
+#candidate-signup:hover {
+    background-color: #ffcc00 !important;
+    color: #3a3a5a !important;
+}
+
+/* Company's Signup Button - Specific Style */
+#company-signup {
+    color: #00ccff !important;
+    /* Light Blue text */
+    border-color: #00ccff !important;
+}
+
+/* Hover Effect for Company's Signup */
+#company-signup:hover {
+    background-color: #00ccff !important;
+    color: #3a3a5a !important;
+}
+
+/* Ensure spacing */
+.ms-2 {
+    margin-left: 12px !important;
+}
+
+
+/* Updated styling for signup buttons (merge with your original rules) */
+.btn-signup {
+    background-color: transparent;
+    color: var(--light);
+    border: 2px solid var(--light);
+    padding: 0.65rem 1.5rem;
+    border-radius: 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+/* Candidate's Signup Button - Specific Style */
+#candidate-signup {
+    color: #ffcc00;
+    border-color: #ffcc00;
+}
+
+#candidate-signup:hover {
+    background-color: #ffcc00;
+    color: var(--primary);
+}
+
+/* Company's Signup Button - Specific Style */
+#company-signup {
+    color: #00ccff;
+    border-color: #00ccff;
+}
+
+#company-signup:hover {
+    background-color: #00ccff;
+    color: var(--primary);
+}
+
