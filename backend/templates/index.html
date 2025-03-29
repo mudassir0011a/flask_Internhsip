@@ -7,8 +7,8 @@
   <title>InternshipHub</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/dark_mode.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_mode.css') }}">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta name="description"
     content="InternshipHub connects students with top companies offering exciting internship opportunities.">
@@ -29,18 +29,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="internships.html">Internships</a></li>
-            <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{{ url_for('home') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('internships') }}">Internships</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('about_us') }}">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_us') }}">Contact Us</a></li>
           </ul>
           <div class="d-flex align-items-center">
             <!-- Dynamic Buttons -->
-            <a href="dashboard.html" id="dashboard-link" class="btn btn-dashboard me-2 d-none">Dashboard</a>
-            <a href="#" id="logout-link" class="btn btn-logout d-none">Logout</a>
-            <a href="login.html" id="login-link" class="btn btn-login">Login</a>
-            <a href="candidate_signup.html" id="candidate-signup" class="btn btn-signup ms-2">Candidate's Signup</a>
-            <a href="company_signup.html" id="company-signup" class="btn btn-signup ms-2">Company's Signup</a>
+           <a href="{{ url_for('dashboard') }}" id="dashboard-link" class="btn btn-dashboard me-2 d-none">Dashboard</a>
+<a href="#" id="logout-link" class="btn btn-logout d-none">Logout</a>
+<a href="{{ url_for('login') }}" id="login-link" class="btn btn-login">Login</a>
+<a href="{{ url_for('candidate_signup') }}" id="candidate-signup" class="btn btn-signup ms-2">Candidate's Signup</a>
+<a href="{{ url_for('company_signup') }}" id="company-signup" class="btn btn-signup ms-2">Company's Signup</a>
 
           </div>
         </div>

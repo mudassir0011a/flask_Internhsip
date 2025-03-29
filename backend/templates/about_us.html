@@ -790,15 +790,15 @@
     <div id="navbar">
         <nav class="navbar about-navbar"> <!-- Added about-navbar class -->
             <a class="navbar-brand" href="#"> <i class="fas fa-laptop-code"></i> <span>InternshipHub</span></a>
-            <div class="navbar-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="internships.html" class="nav-link">Internships</a>
-                <a href="about_us.html" class="nav-link active" id="abt_us">About Us</a>
-                <a href="contact_us.html" class="nav-link">Contact Us</a>
-                <a href="dashboard.html" class="btn d-none nav-link btn-dashboard" id="dashboard-link">Dashboard</a>
-                <a href="#" class="btn d-none nav-link btn-logout" id="logout-link" onclick="logoutUser()">Logout</a>
-                <a href="login.html" class="btn nav-link" id="login-link">Login</a>
-            </div>
+           <div class="navbar-links">
+    <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+    <a href="{{ url_for('internships') }}" class="nav-link">Internships</a>
+    <a href="{{ url_for('about_us') }}" class="nav-link">About Us</a>
+    <a href="{{ url_for('contact_us') }}" class="nav-link active" id="ctnt_us">Contact Us</a>
+    <a href="{{ url_for('dashboard') }}" class="btn d-none nav-link btn-dashboard" id="dashboard-link">Dashboard</a>
+    <a href="#" class="btn d-none nav-link btn-logout" id="logout-link" onclick="logoutUser()">Logout</a>
+    <a href="{{ url_for('login') }}" class="btn nav-link" id="login-link">Login</a>
+</div>
 
             <!-- Updated Dark Mode Toggle -->
             <div class="dark-mode-toggle">
@@ -880,15 +880,15 @@
 
             <!-- Quick Links Section -->
             <div class="footer-section quick-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="internships.html">Internships</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="contact_us.html">Contact</a></li>
-                    <li><a href="index.html#faq-section">FAQ</a></li>
-                </ul>
-            </div>
+    <h3>Quick Links</h3>
+    <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('internships') }}">Internships</a></li>
+        <li><a href="{{ url_for('about_us') }}">About Us</a></li>
+        <li><a href="{{ url_for('contact_us') }}">Contact</a></li>
+        <li><a href="{{ url_for('home') }}#faq-section">FAQ</a></li>
+    </ul>
+</div>
 
             <!-- Contact Info Section -->
             <div class="footer-section contact-info">
@@ -917,7 +917,7 @@
 
     <!-- Font Awesome for Social Media Icons -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
-    <script src="../static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const darkModeToggle = document.getElementById("darkModeToggle");
